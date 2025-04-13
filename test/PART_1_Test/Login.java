@@ -43,7 +43,7 @@ public boolean checkPasswordComplexity(){
         if (Password.matches(objRegister.getPassword())) {            
             return true;
         }
-        JOptionPane.showMessageDialog(null, "Username or Password incorrect", "Login", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Kyle!!!!!!!", "Login", JOptionPane.PLAIN_MESSAGE);
     }
         }
 public boolean checkCellphoneNumber(){
@@ -103,7 +103,7 @@ public boolean checkCellphoneNumber(){
  public String returnLoginStatus(){
      LoginUser();
      ReturnLoginStatus();
-     JOptionPane.showMessageDialog(null, "Welcome "+ objRegister.getFirstName() + " " + objRegister.getSurname() + ", it is great to see you again.");
+     JOptionPane.showMessageDialog(null, "Welcome "+ objRegister.getFirstName() + " " + objRegister.getSurname() + ", it is great to see you.");
         return null;
  }
 }

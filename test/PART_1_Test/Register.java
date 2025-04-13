@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 public class Register {
 private String FirstName;
         private String Surname;
-        private String Username;
+        private String Username= "kyl_1";
         private String CellNum;
         private String Password;
 
@@ -122,6 +122,7 @@ private String FirstName;
             return true;
         }
         JOptionPane.showMessageDialog(null, "Cell phone Number is incorrectly formatted or does not contain an international code.");
+    
     }   
     }
 }
