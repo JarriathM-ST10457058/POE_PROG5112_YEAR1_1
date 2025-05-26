@@ -1,6 +1,7 @@
 package PART_1;
 
-import javax.swing.JOptionPane;
+import java.util.Scanner;
+
 /**
  *
  * @author Name: Jarriath
@@ -14,99 +15,105 @@ public class Login {
     String Username;
     String Password;
     String CellNum;
+    private String LoginUsername;
+    private String LoginPassword;
+
+    private Scanner scanner = new Scanner(System.in);
+    
 // Method for Username Requirements   
 public boolean checkUsername(){
-    while (true) { 
-  
-        Username= (JOptionPane.showInputDialog(null,"Please enter your Username","Login", JOptionPane.PLAIN_MESSAGE));
+    while (true) {
+            System.out.print("Please enter your Username: \n ");
+            Username = scanner.nextLine();
 
-        if (Username == null) {
-            JOptionPane.showMessageDialog(null, "Login cancelled.");
-            return false;
+            if (Username.isEmpty()) {
+                System.out.println("Login cancelled.");
+                return false;
+            }
+            if (!Username.equals(objRegister.getUsername())) {
+            } else {
+                return true;
         }
-        if (Username.matches(objRegister.getUsername())) {            
-            return true;
+            System.out.println("Username incorrect.");
         }
-        JOptionPane.showMessageDialog(null, "Username or Password incorrect", "Login", JOptionPane.PLAIN_MESSAGE);
     }
-        }
 //Method for password requirements   
 public boolean checkPasswordComplexity(){
-    while (true) { 
-  
-        Password= (JOptionPane.showInputDialog(null,"Please enter your Password","Login", JOptionPane.PLAIN_MESSAGE));
+    while (true) {
+            System.out.print("Please enter your Password:\n ");
+            Password = scanner.nextLine();
 
-        if (Password == null) {
-            JOptionPane.showMessageDialog(null, "Login cancelled.");
-            return false;
+            if (Password.isEmpty()) {
+                System.out.println("Login cancelled.");
+                return false;
+            }
+            if (Password.equals(objRegister.getPassword())) {
+                return true;
+            }
+            System.out.println("Password incorrect.");
         }
-        if (Password.matches(objRegister.getPassword())) {            
-            return true;
-        }
-        JOptionPane.showMessageDialog(null, "Username or Password incorrect", "Login", JOptionPane.PLAIN_MESSAGE);
     }
-        }
 public boolean checkCellphoneNumber(){
-    while (true) { 
-        
-        CellNum = (JOptionPane.showInputDialog(null, "Please enter your CellPhone Number", "Login", JOptionPane.PLAIN_MESSAGE));
-        if (CellNum == null) {
-            JOptionPane.showMessageDialog(null, "Login cancelled.");
-            return false;
+    while (true) {
+            System.out.print("Please enter your CellPhone Number: \n ");
+            CellNum = scanner.nextLine();
+
+            if (CellNum.isEmpty()) {
+                System.out.println("Login cancelled.");
+                return false;
+            }
+            if (CellNum.length() > 10 && CellNum.startsWith("27")) {
+                return true;
+            }
+            System.out.println("Cell phone Number is incorrectly formatted or does not contain an international code.");
         }
-        if(CellNum.length()>10 && CellNum.contains("27")){
-            return true;
-        }
-        JOptionPane.showMessageDialog(null, "Cell phone Number is incorrectly formatted or does not contain an international code.", "Login", JOptionPane.PLAIN_MESSAGE);
-    }   
     }
 
  public String RegisterUser(){
     checkUsername();
-    checkPasswordComplexity();
-    checkCellphoneNumber();
-    JOptionPane.showMessageDialog(null, "You have been Registered Successfully", "Login", JOptionPane.PLAIN_MESSAGE);
+        checkPasswordComplexity();
+        checkCellphoneNumber();
+        System.out.println("You have been Registered Successfully!");
         return null;
-   
- } 
-      String LoginUsername;
-       String LoginPassword;
-       
+    } 
+ 
  public boolean LoginUser(){
-        LoginUsername= JOptionPane.showInputDialog(null, "Please enter your Username", "Login", JOptionPane.PLAIN_MESSAGE);
-        LoginPassword= JOptionPane.showInputDialog(null, "Please enter your Password", "Login", JOptionPane.PLAIN_MESSAGE);
-    do {      
-        if(LoginUsername.matches(Username)&& LoginPassword.matches(Password)){
-        return true;
-        }
-        
-    }
-    while (false);
-        JOptionPane.showMessageDialog(null, "Username or Password incorrect,please try again.");
-        return false;  
-        
- }
+       System.out.print("Please enter your Username:  ");
+        LoginUsername = scanner.nextLine();
 
- public boolean ReturnLoginStatus(){
-       while (true) { 
-        if (LoginUsername == null && LoginPassword == null && CellNum == null) {
-            JOptionPane.showMessageDialog(null, "Login cancelled.");
-            return false;
-        }
-        if (LoginUsername.matches(Username)&& LoginPassword.matches(Password)){ 
-            JOptionPane.showConfirmDialog(null, "A Successful Login", "Login", JOptionPane.PLAIN_MESSAGE);
+        System.out.print("Please enter your Password: ");
+        LoginPassword = scanner.nextLine();
+
+        if (LoginUsername.equals(Username) && LoginPassword.equals(Password)) {
             return true;
         }
-        JOptionPane.showConfirmDialog(null, "A Failed Login", "Login", JOptionPane.PLAIN_MESSAGE);
+
+        System.out.println("Username or Password incorrect, please try again.");
+        return false;
     }
+
+ public boolean ReturnLoginStatus(){
+       if (LoginUsername == null || LoginPassword == null || CellNum == null) {
+            System.out.println("Login cancelled.");
+            return false;
         }
+        if (LoginUsername.equals(Username) && LoginPassword.equals(Password)) {
+            System.out.println("A Successful Login.");
+            return true;
+        }
+        System.out.println("A Failed Login.");
+        return false;
+    }
  public String returnLoginStatus(){
-     LoginUser();
-     ReturnLoginStatus();
-     JOptionPane.showMessageDialog(null, "Welcome "+ objRegister.getFirstName() + " " + objRegister.getSurname() + ", it is great to see you again.");
+     boolean loggedIn = LoginUser();
+        ReturnLoginStatus();
+        if (loggedIn) {
+            System.out.println("Welcome " + objRegister.getFirstName() + " " + objRegister.getSurname() + ", it is great to see you.");
+        }
         return null;
  }
 }
+
 
     
 

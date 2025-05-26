@@ -1,6 +1,7 @@
 package PART_1;
 
-import javax.swing.JOptionPane;
+import java.util.Scanner;
+
 
 /**
  *
@@ -16,6 +17,7 @@ private String FirstName;
         private String CellNum;
         private String Password;
 
+        private Scanner scanner = new Scanner(System.in);
 // Setters and Getters
 
     public String getFirstName() {
@@ -70,57 +72,76 @@ private String FirstName;
 
 // User Info Input
     public void UserInfo(){
-        setFirstName(JOptionPane.showInputDialog(null, "Please enter your First Name", "Register", JOptionPane.PLAIN_MESSAGE));
-         setSurname(JOptionPane.showInputDialog(null, "Please enter your Last Name", "Register", JOptionPane.PLAIN_MESSAGE));
-}
+        System.out.print("Please enter your First Name: \n " );
+        setFirstName(scanner.nextLine());
+
+        System.out.print("Please enter your Last Name:\n ");
+        setSurname(scanner.nextLine());
+    }
 //Username Requirements
     public boolean RegisterUser() {
         //Requirements Loop
-    while (true) { 
-        setUsername(JOptionPane.showInputDialog(null,"Please enter a Username \n(Username must contain an underscore and be less than 5 characters.)","Register", JOptionPane.PLAIN_MESSAGE));
+        while (true) {
+            System.out.print("Please enter a Username (must contain an underscore and be less than 5 characters): \n ");
+            String input = scanner.nextLine();
 
-        if (Username == null) {
-            JOptionPane.showMessageDialog(null, "Registration cancelled.");
-            return false;
+            if (input.isEmpty()) {
+                System.out.println("Registration cancelled.");
+                return false;
+            }
+
+            setUsername(input);
+
+            if (Username.contains("_") && Username.length() < 5) {
+                System.out.println("Username is successfully captured.");
+                return true;
+            }
+
+            System.out.println("Username is not correctly formatted. Please ensure it contains an underscore and is no more than five characters in length. \n");
         }
-        if (Username.contains("_") && Username.length() < 5) {
-            JOptionPane.showMessageDialog(null, "Username is successfully captured.");
-            return true;
-        }
-        JOptionPane.showMessageDialog(null, "Username is not correctly formatted, please ensure that your username contains an Underscore and is no more than Five chracters in length.");
     }
-}
 //Password Requirements
     public boolean RegisterPassword() {
         //Requirements Loop
-    while (true) { 
-        setPassword(JOptionPane.showInputDialog(null, "Please enter a Password \n( Password must contain one Uppercase letter, More than 8 characters and a Special Character.)", "Register", JOptionPane.PLAIN_MESSAGE));
-     
-        if (Password == null) {
-            JOptionPane.showMessageDialog(null, "Registration cancelled.");
-            return false;
+    while (true) {
+            System.out.print("Please enter a Password (must contain one uppercase letter, more than 8 characters, a number, and a special character): \n ");
+            String input = scanner.nextLine();
+
+            if (input.isEmpty()) {
+                System.out.println("Registration cancelled.");
+                return false;
+            }
+
+            setPassword(input);
+
+            if (Password.matches(".*[A-Z].*") && Password.length() > 8 && Password.matches(".*[0-9].*") && Password.matches(".*[!@#$%^&*<>/?_:+\\-=].*")) {
+                System.out.println("Password is successfully captured.");
+                return true;
+            }
+
+            System.out.println("Password is not correctly formatted. Please ensure it contains at least 8 characters, a capital letter, a number, and a special character.");
         }
-        if (Password.matches(".*[A-Z].*") && Password.length() > 8 && Password.matches(".*[0-9].*") && Password.matches(".*[!@#$%^&*<>/?_:+-=].*")){
-            JOptionPane.showMessageDialog(null, "Password is successfully captured.");
-            return true;
-        }
-        JOptionPane.showMessageDialog(null, "Password is not correctly formatted \n (Please ensure that the password contains at least 8 characters, a capital letter, a number and a special character.");
     }
-}  
 //Cellphone Number Requirements
     public boolean RegisterCellNum(){
         //Requirements Loop
-    while (true) { 
-        setCellNum(JOptionPane.showInputDialog(null, "Please enter your CellPhone Number", "Register", JOptionPane.PLAIN_MESSAGE));
-        if (CellNum == null) {
-            JOptionPane.showMessageDialog(null, "Registration cancelled.");
-            return false;
+    while (true) {
+            System.out.print("Please enter your CellPhone Number: \n ");
+            String input = scanner.nextLine();
+
+            if (input.isEmpty()) {
+                System.out.println("Registration cancelled.");
+                return false;
+            }
+
+            setCellNum(input);
+
+            if (CellNum.length() > 10 && CellNum.startsWith("27")) {
+                System.out.println("Cellphone Number is successfully added.");
+                return true;
+            }
+
+            System.out.println("Cellphone Number is incorrectly formatted or does not contain an international code (should start with '27').");
         }
-        if(CellNum.length()>10 && CellNum.contains("27")){
-            JOptionPane.showMessageDialog(null, "Cellphone Number is successfully added.");
-            return true;
-        }
-        JOptionPane.showMessageDialog(null, "Cell phone Number is incorrectly formatted or does not contain an international code.");
-    }   
     }
 }
