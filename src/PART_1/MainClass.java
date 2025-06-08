@@ -52,17 +52,19 @@ private static void showMenu() {
     do {
         System.out.println("\nMenu:");
         System.out.println("1. Send Messages");
-        System.out.println("2. View Sent Messages (Coming Soon)");
-        System.out.println("3. Quit");
+        System.out.println("2. View Sent Messages");
+        System.out.println("3. View Reports"); // PART3REPORT
+        System.out.println("4. Quit");
         System.out.print("Enter choice: ");
         choice = scanner.nextInt();
 
         switch (choice) {
             case 1 -> MessageHandler.sendMessages();
             case 2 -> System.out.println("Coming Soon.");
-            case 3 -> System.out.println("Exiting program...");
+            case 3 -> MessageHandler.showReportMenu();//Call Report menu 
+            case 4 -> System.out.println("Exiting program...");
             default -> System.out.println("Invalid option. Try again.");
         }
-    } while (choice != 3);
+    } while (choice != 4);
 }
 }

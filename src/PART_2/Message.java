@@ -124,4 +124,69 @@ public class Message {
         }
         System.out.println("Total messages sent: " + totalMessages);
     }
+    //PART 3
+    // Accessor methods
+public String getMessageHash() {
+    return messageHash;
+}
+
+public String getMessageID() {
+    return messageID;
+}
+
+public String getRecipientCell() {
+    return recipientCell;
+}
+
+public String getMessageContent() {
+    return messageContent;
+}
+
+//PART 3 
+//sendMessage method 
+public static Message sendMessage(Scanner scanner, List<Message> sentMessages,
+                                  List<Message> disregardedMessages,
+                                  List<Message> storedMessages,
+                                  List<String> messageHashes,
+                                  List<String> messageIDs) {
+    System.out.print("Enter recipient cell number: ");
+    String cell = scanner.next();
+
+    scanner.nextLine(); // clear inpu
+    System.out.print("Enter your message (max 250 chars): ");
+    String msg = scanner.nextLine();
+
+    if (msg.length() > 250) {
+        System.out.println("Message too long. Max 250 characters.");
+        return null;
+    }
+
+    Message m = new Message(cell, msg);
+
+    if (!m.checkMessageID() || !m.checkRecipientCell()) {
+        System.out.println("Invalid message or recipient format.");
+        disregardedMessages.add(m);
+        return null;
+    }
+
+    System.out.println("1. Send Message\n2. Disregard Message\n3. Store Message to send later");
+    int option = scanner.nextInt();
+
+    if (option == 1) {
+        sentMessages.add(m);
+        messageHashes.add(m.getMessageHash());
+        messageIDs.add(m.getMessageID());
+        System.out.println("Message sent!");
+        m.displayMessage();
+    } else if (option == 3) {
+        m.storeMessage();
+        storedMessages.add(m);
+        System.out.println("Message stored.");
+    } else {
+        disregardedMessages.add(m);
+        System.out.println("Message discarded.");
+    }
+
+    return m;
+}
 }
