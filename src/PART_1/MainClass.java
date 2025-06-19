@@ -1,8 +1,7 @@
 package PART_1;
 
-import static PART_1.Login.objRegister;
-import PART_2.Message;
-import PART_2.MessageHandler;
+
+import PART_2_3.MessageHandler;
 import java.util.Scanner;
 /**
  *
