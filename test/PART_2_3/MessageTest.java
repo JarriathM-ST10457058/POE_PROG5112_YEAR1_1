@@ -124,7 +124,7 @@ public class MessageTest {
     @Test
     public void testGetTotalMessages() {
         System.out.println("getTotalMessages");
-        int expResult = 0;
+        int expResult = 2;
         int result = Message.getTotalMessages();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.

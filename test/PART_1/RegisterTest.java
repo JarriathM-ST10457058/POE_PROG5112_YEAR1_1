@@ -112,11 +112,11 @@ public class RegisterTest {
     @Test
     public void testSetUsername() {
         System.out.println("setUsername");
-        String Username = "";
+        String Username = "kyl_1";
         Register instance = new Register();
         instance.setUsername(Username);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        fail("Kyle!!!!!!!!");
     }
 
     /**
@@ -139,7 +139,7 @@ public class RegisterTest {
     @Test
     public void testSetCellNum() {
         System.out.println("setCellNum");
-        String CellNum = "";
+        String CellNum = "+27838968976";
         Register instance = new Register();
         instance.setCellNum(CellNum);
         // TODO review the generated test code and remove the default call to fail.
@@ -153,7 +153,7 @@ public class RegisterTest {
     public void testGetPassword() {
         System.out.println("getPassword");
         Register instance = new Register();
-        String expResult = "";
+        String expResult = "Ch&&sec@ke99!";
         String result = instance.getPassword();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
